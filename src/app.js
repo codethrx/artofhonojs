@@ -13,7 +13,11 @@ app.notFound((c) => {
 app.onError((err, c) => {
   console.log(err);
   return c.json(
-    new ApiResponse(err?.statusCode, err?.errors || [], err?.message || ""),
+    new ApiResponse(
+      err?.statusCode || 500,
+      err?.errors || [],
+      err?.message || ""
+    ),
     err?.statusCode || 500
   );
 });
